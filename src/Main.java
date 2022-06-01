@@ -70,11 +70,17 @@ public class Main {
         }
         Epic epic3 = new Epic("Epic3", "Epic description3");
         taskManager.createEpic(epic3);
+        SubTask subTask10 = new SubTask("SubTask10", "Subtask description10", Status.IN_PROGRESS, 10);
+        taskManager.createSubTask(subTask10);
         System.out.println(taskManager.getEpicById(10));
         for (Epic epic : taskManager.getAllEpics()) {
             System.out.println(epic);
         }
         taskManager.removeEpicById(10);
+        for (Epic epic : taskManager.getAllEpics()) {
+            System.out.println(epic);
+        }
+
         taskManager.removeSubTaskById(6);
         taskManager.clearAllSubTasksByEpicId(5);
         taskManager.clearAllEpics();
