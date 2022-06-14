@@ -1,4 +1,4 @@
-package tasks;
+package ru.yandex.practicum.tasks;
 
 import java.util.ArrayList;
 

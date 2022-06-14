@@ -1,4 +1,5 @@
-import tasks.*;
+import ru.yandex.practicum.tasks.*;
+
 
 import java.util.ArrayList;
 
@@ -6,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         //tests for Tasks
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
         Task task1 = new Task("Task1", "Description1", Status.NEW);
         taskManager.createTask(task1);
         Task task2 = new Task("Task1", "Description2", Status.NEW);
@@ -16,6 +17,11 @@ public class Main {
         taskManager.createTask(task2);
         Task task3 = taskManager.getTaskById(3);
         System.out.println(task3);
+        System.out.println("---------------history-------------------");
+        for (Task task : taskManager.getHistory()) {
+            System.out.println(task.toString());
+        }
+        System.out.println("-----------------------------------------");
         ArrayList<Task> tasks = taskManager.getAllTasks();
         for (Task task : tasks) {
             System.out.println(task);
@@ -63,6 +69,11 @@ public class Main {
         }
         SubTask subTask5 = taskManager.getSubTaskById(6);
         System.out.println(subTask5);
+        System.out.println("---------------history-------------------");
+        for (Task task : taskManager.getHistory()) {
+            System.out.println(task.toString());
+        }
+        System.out.println("-----------------------------------------");
         SubTask subTask6 = new SubTask("SubTask6", "Subtask description6", Status.IN_PROGRESS, 5);
         taskManager.createSubTask(subTask6);
         for (Epic epic : taskManager.getAllEpics()) {
@@ -72,8 +83,7 @@ public class Main {
         taskManager.createEpic(epic3);
         SubTask subTask10 = new SubTask("SubTask10", "Subtask description10", Status.IN_PROGRESS, 10);
         taskManager.createSubTask(subTask10);
-        System.out.println(taskManager.getEpicById(10));
-        for (Epic epic : taskManager.getAllEpics()) {
+        System.out.println(taskManager.getEpicById(10));        for (Epic epic : taskManager.getAllEpics()) {
             System.out.println(epic);
         }
         taskManager.removeEpicById(10);
@@ -84,5 +94,10 @@ public class Main {
         taskManager.removeSubTaskById(6);
         taskManager.clearAllSubTasksByEpicId(5);
         taskManager.clearAllEpics();
+        System.out.println("---------------history-------------------");
+        for (Task task : taskManager.getHistory()) {
+            System.out.println(task.toString());
+        }
+        System.out.println("-----------------------------------------");
     }
 }

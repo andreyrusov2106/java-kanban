@@ -1,4 +1,4 @@
-package tasks;
+package ru.yandex.practicum.tasks;
 
 public class SubTask extends Task {
 
