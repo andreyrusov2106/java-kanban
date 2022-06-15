@@ -22,11 +22,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void createTask(Task task) {
-        if (task != null) {
-            currentId++;
-            task.setId(currentId);
-            tasks.put(currentId, task);
-        }
+        currentId++;
+        task.setId(currentId);
+        tasks.put(currentId, task);
     }
 
     @Override
@@ -68,16 +66,11 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public int createEpic(Epic task) {
-        if (task != null) {
-            currentId++;
-            task.setId(currentId);
-            epics.put(currentId, task);
-            checkEpicStatus(currentId);
-            return currentId;
-        } else {
-            return -1;
-        }
+    public void createEpic(Epic task) {
+        currentId++;
+        task.setId(currentId);
+        epics.put(currentId, task);
+        checkEpicStatus(currentId);
     }
 
     @Override

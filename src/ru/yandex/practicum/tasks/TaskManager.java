@@ -22,7 +22,7 @@ public interface TaskManager {
 
     Epic getEpicById(int id);
 
-    int createEpic(Epic task);
+    void createEpic(Epic task);
 
     void updateEpic(Epic task);
 

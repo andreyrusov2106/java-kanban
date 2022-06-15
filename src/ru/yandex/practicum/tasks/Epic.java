@@ -1,9 +1,10 @@
 package ru.yandex.practicum.tasks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Epic extends Task {
-    private final ArrayList<Integer> subTaskIds = new ArrayList<>();
+    private final List<Integer> subTaskIds = new ArrayList<>();
 
     public Epic(String name, String description) {
         super(name, description);
@@ -13,7 +14,7 @@ public class Epic extends Task {
         super(id, name, description);
     }
 
-    ArrayList<Integer> getSubTaskIds() {
+    List<Integer> getSubTaskIds() {
         return subTaskIds;
     }
 
