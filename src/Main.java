@@ -1,5 +1,6 @@
 import ru.yandex.practicum.tasks.*;
 
+import java.io.File;
 import java.util.List;
 
 public class Main {
@@ -22,7 +23,11 @@ public class Main {
         printHistory(taskManager.getHistory());
         taskManager.getSubTaskById(3);
         taskManager.getSubTaskById(5);
+        FileBackedTasksManager taskManager2 = Loader.loadFromFile(new File("base.csv"));
         printHistory(taskManager.getHistory());
+        System.out.println("*********");
+        printHistory(taskManager2.getHistory());
+        System.out.println("*********");
         taskManager.getSubTaskById(4);
         taskManager.getSubTaskById(3);
         printHistory(taskManager.getHistory());
