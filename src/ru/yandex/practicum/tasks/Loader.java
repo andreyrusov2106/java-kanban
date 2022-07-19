@@ -23,10 +23,9 @@ public class Loader {
                 } else {
                     line = bufferedReader.readLine();
                     for (Integer taskId : historyFromString(line)) {
-                        if (fileBackedTasksManager.getAllTasks().size() > 0) fileBackedTasksManager.getTaskById(taskId);
-                        if (fileBackedTasksManager.getAllEpics().size() > 0) fileBackedTasksManager.getEpicById(taskId);
-                        if (fileBackedTasksManager.getAllSubTasks().size() > 0)
-                            fileBackedTasksManager.getSubTaskById(taskId);
+                        fileBackedTasksManager.getTaskById(taskId);
+                        fileBackedTasksManager.getEpicById(taskId);
+                        fileBackedTasksManager.getSubTaskById(taskId);
 
                     }
                 }

@@ -33,6 +33,7 @@ public class Main {
         printHistory(taskManager.getHistory());
         taskManager.getEpicById(1);
         printHistory(taskManager.getHistory());
+        taskManager2.removeSubTaskById(4);
         taskManager.removeSubTaskById(4);
         printHistory(taskManager.getHistory());
         taskManager.removeEpicById(1);
