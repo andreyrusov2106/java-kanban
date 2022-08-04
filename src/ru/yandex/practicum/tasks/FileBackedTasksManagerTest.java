@@ -36,7 +36,7 @@ class FileBackedTasksManagerTest extends TaskManagerTest {
     }
 
     @Test
-    void EmptyHistoryList() {
+    void emptyHistoryList() {
         TaskManager taskManager2 = Loader.loadFromFile(new File("base.csv"));
         taskManager2.clearAllTasks();
         taskManager2.clearAllEpics();
