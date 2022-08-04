@@ -34,7 +34,6 @@ class FileBackedTasksManagerTest extends TaskManagerTest {
         List<SubTask> tasks = taskManager2.getAllSubTasksByEpicId(1);
         assertEquals(0, tasks.size(), "Неверное количество задач.");
     }
-
     @Test
     void emptyHistoryList() {
         TaskManager taskManager2 = Loader.loadFromFile(new File("base.csv"));
