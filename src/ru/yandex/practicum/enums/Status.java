@@ -1,4 +1,4 @@
-package ru.yandex.practicum.tasks;
+package ru.yandex.practicum.enums;
 
 public enum Status {
     NEW, IN_PROGRESS,DONE

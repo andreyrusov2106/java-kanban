@@ -1,4 +1,8 @@
-package ru.yandex.practicum.tasks;
+package ru.yandex.practicum.interfaces;
+
+import ru.yandex.practicum.tasks.Epic;
+import ru.yandex.practicum.tasks.SubTask;
+import ru.yandex.practicum.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,4 +46,6 @@ public interface TaskManager {
     void removeSubTaskById(int subTaskId);
 
     List<Task> getHistory();
+
+    List<Task> getPrioritizedTasks();
 }

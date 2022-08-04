@@ -1,7 +1,11 @@
 package ru.yandex.practicum.tasks;
 
+import ru.yandex.practicum.exceptions.ManagerSaveException;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
@@ -13,7 +17,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     public void save() {
         try (FileWriter fileWriter = new FileWriter(fileName)) {
-            fileWriter.write("id,type,name,status,description,epic\n");
+            fileWriter.write("id,type,name,status,description,epic,dateStart,duration,dateEnd\n");
             if (getAllTasks().size() > 0) {
                 for (Task task : getAllTasks()) {
                     fileWriter.write(ToStringHelper.toString(task));
@@ -94,5 +98,22 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         Epic result = super.getEpicById(id);
         if (result != null) save();
         return result;
+    }
+
+    @Override
+    public void clearAllTasks() {
+        super.clearAllTasks();
+        save();
+    }
+
+    @Override
+    public void clearAllEpics() {
+        super.clearAllEpics();
+        save();
+    }
+
+    @Override
+    public List<Task> getPrioritizedTasks() {
+        return super.getPrioritizedTasks();
     }
 }

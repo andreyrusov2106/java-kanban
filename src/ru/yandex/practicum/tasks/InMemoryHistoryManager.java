@@ -1,5 +1,7 @@
 package ru.yandex.practicum.tasks;
 
+import ru.yandex.practicum.interfaces.HistoryManager;
+
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {

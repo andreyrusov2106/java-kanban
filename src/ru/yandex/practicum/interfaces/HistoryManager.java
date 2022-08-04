@@ -1,4 +1,6 @@
-package ru.yandex.practicum.tasks;
+package ru.yandex.practicum.interfaces;
+
+import ru.yandex.practicum.tasks.Task;
 
 import java.util.List;
 

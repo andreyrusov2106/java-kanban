@@ -1,4 +1,4 @@
-package ru.yandex.practicum.tasks;
+package ru.yandex.practicum.exceptions;
 
 public class ManagerSaveException extends  RuntimeException{
     public ManagerSaveException(final String message) {

@@ -1,5 +1,9 @@
 package ru.yandex.practicum.tasks;
 
+import ru.yandex.practicum.enums.Status;
+import ru.yandex.practicum.enums.TaskType;
+import ru.yandex.practicum.exceptions.ManagerLoadException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

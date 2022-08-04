@@ -1,4 +1,4 @@
-package ru.yandex.practicum.tasks;
+package ru.yandex.practicum.exceptions;
 
 public class ManagerLoadException extends  RuntimeException{
     public ManagerLoadException(final String message) {
