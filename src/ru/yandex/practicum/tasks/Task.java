@@ -30,6 +30,9 @@ public class Task {
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
+    public void calculateEndTime() {
+        this.endTime = startTime.plus(duration);
+    }
 
     private Duration duration;
     private LocalDateTime startTime;
@@ -80,7 +83,7 @@ public class Task {
         this.description = description;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 

@@ -117,11 +117,11 @@ public class InMemoryTaskManager implements TaskManager {
     public List<SubTask> getAllSubTasksByEpicId(int epicId) {
         List<SubTask> subTasks = new ArrayList<>();
         for (Integer subTaskId : epics.get(epicId).getSubTaskIds()) {
-            subTasks.add(this.subTasks.get(subTaskId));
+            if (this.subTasks.get(subTaskId) != null) subTasks.add(this.subTasks.get(subTaskId));
         }
         return subTasks;
     }
-
+    @Override
     public List<SubTask> getAllSubTasks() {
         return new ArrayList<>(subTasks.values());
     }
@@ -227,6 +227,7 @@ public class InMemoryTaskManager implements TaskManager {
                     if (subTask.getStartTime() != null) {
                         epic.setStartTime(subTask.getStartTime());
                         epic.setDuration(subTask.getDuration());
+                        epic.calculateEndTime();
                     }
                 } else {
                     if (subTask.getStartTime() != null && subTask.getStartTime().isBefore(epic.getStartTime())) {

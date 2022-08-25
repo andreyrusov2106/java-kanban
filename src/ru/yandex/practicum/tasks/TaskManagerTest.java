@@ -1,11 +1,14 @@
 package ru.yandex.practicum.tasks;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.enums.Status;
 import ru.yandex.practicum.exceptions.DateTimeValidateException;
 import ru.yandex.practicum.interfaces.TaskManager;
+import ru.yandex.practicum.server.KVServer;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -13,23 +16,30 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-abstract class TaskManagerTest {
+public abstract class TaskManagerTest {
 
-    static TaskManager taskManager;
-    static Epic epic1;
-    static SubTask subTask1;
-    static SubTask subTask2;
-    static SubTask subTask3;
-    static Task task1;
+    public static TaskManager taskManager;
+    public static Epic epic1;
+    public static SubTask subTask1;
+    public static SubTask subTask2;
+    public static SubTask subTask3;
+    public static Task task1;
+    public static KVServer kvServer;
 
     @BeforeAll
-    static void BeforeAll() {
+    static void BeforeAll() throws IOException {
         //Tests
+        kvServer = Managers.getDefaultKVServer();
         epic1 = new Epic("Epic1", "Epic description1");
         task1 = new Task("Test addNewTask", "Test addNewTask description", Status.NEW);
         subTask1 = new SubTask("SubTask1", "Subtask description1", Status.NEW, 1);
         subTask2 = new SubTask("SubTask2", "Subtask description2", Status.IN_PROGRESS, 1);
         subTask3 = new SubTask("SubTask3", "Subtask description3", Status.DONE, 1);
+    }
+
+    @AfterAll
+    static void AfterAll() {
+        kvServer.stop();
     }
 
     public TaskManagerTest(TaskManager taskManager) {

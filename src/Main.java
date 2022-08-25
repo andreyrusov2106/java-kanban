@@ -1,23 +1,31 @@
 import ru.yandex.practicum.enums.Status;
+import ru.yandex.practicum.http.HttpTaskManager;
 import ru.yandex.practicum.interfaces.TaskManager;
+import ru.yandex.practicum.server.KVServer;
 import ru.yandex.practicum.tasks.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        KVServer kvServer =new KVServer();
+        kvServer.start();
         TaskManager taskManager = Managers.getDefault();
         //Tests
         Epic epic1 = new Epic("Epic1", "Epic description1");
         SubTask subTask1 = new SubTask("SubTask1", "Subtask description1", Status.NEW, 1,
                 LocalDateTime.of(2022, Month.AUGUST, 3, 18, 33), Duration.ofMinutes(15));
-        SubTask subTask2 = new SubTask("SubTask2", "Subtask description2", Status.NEW, 1);
-        SubTask subTask3 = new SubTask("SubTask3", "Subtask description3", Status.NEW, 1);
+        SubTask subTask2 = new SubTask("SubTask2", "Subtask description2", Status.NEW, 1,
+                LocalDateTime.of(2022, Month.AUGUST, 3, 18, 50), Duration.ofMinutes(15));
+        SubTask subTask3 = new SubTask("SubTask3", "Subtask description3", Status.NEW, 1,
+                LocalDateTime.of(2022, Month.AUGUST, 3, 19, 50), Duration.ofMinutes(15));
         taskManager.createEpic(epic1);
         taskManager.createSubTask(subTask1);
         taskManager.createSubTask(subTask2);
@@ -29,6 +37,12 @@ public class Main {
         Task task3 = new Task("Task3", "Subtask description3", Status.NEW);
         Task task4 = new Task("Task4", "Subtask description4", Status.NEW,
                 LocalDateTime.of(2022, Month.AUGUST, 3, 17, 34), Duration.ofMinutes(15));
+        HttpTaskManager httpTaskManager= new HttpTaskManager(8078);
+        taskManager.getEpicById(1);
+        httpTaskManager.load();
+        System.out.println("*********!");
+        printHistory(httpTaskManager.getHistory());
+        System.out.println("*********!");
         taskManager.createTask(task1);
         taskManager.createTask(task2);
         taskManager.createTask(task3);
@@ -59,6 +73,7 @@ public class Main {
         printHistory(taskManager.getHistory());
         taskManager.removeEpicById(1);
         printHistory(taskManager.getHistory());
+        kvServer.stop();
     }
 
     public static void printHistory(List<Task> history) {

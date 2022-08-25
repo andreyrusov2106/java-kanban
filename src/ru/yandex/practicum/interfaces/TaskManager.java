@@ -34,6 +34,7 @@ public interface TaskManager {
 
     //methods for Subtasks
     List<SubTask> getAllSubTasksByEpicId(int epicId);
+    List<SubTask> getAllSubTasks();
 
     void clearAllSubTasksByEpicId(int epicId);
 
